@@ -98,6 +98,11 @@ main {
     height: calc(100vh - 10rem - 4rem); /* Calcula a altura para preencher o espaço restante da tela */
 }
 
+.card:hover h2 {
+    font-size: 1.8em;
+}
+
+
 article {
     background: none; /* Sem cor de fundo */
     border-radius: 0; /* Sem bordas arredondadas */
