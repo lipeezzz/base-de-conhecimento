@@ -1,13 +1,17 @@
 let cardContainer = document.querySelector(".card-container");
 let dados = [];
 let caixaBusca = document.querySelector("#caixa-busca");
+let btnBusca = document.querySelector("#btn-busca"); // 1. Seleciona o botão
   
 async function iniciarBusca() {
     let resposta = await fetch("datajson/data.json");
     dados = await resposta.json();
     renderizarCards(dados);
 
-    caixaBusca.addEventListener("input", () => {
+    // 2. Troca o evento de "input" para "click" no botão
+    btnBusca.addEventListener("click", (event) => {
+        event.preventDefault(); // 3. Impede o recarregamento da página
+
         const termoBusca = caixaBusca.value;
         const dadosFiltrados = filtrarDados(termoBusca);
         renderizarCards(dadosFiltrados);
@@ -33,7 +37,7 @@ function renderizarCards(dados) {
         article.classList.add("card");
         article.innerHTML = `
         <h2>${dado.nome}</h2>
-         <p>${dado.ano}</p>
+         <p>${dado.data_criacao}</p>
          <p>${dado.descricao}</p>
          <a href="${dado.link}" target="_blank">Saiba mais</a>
          `;
@@ -41,3 +45,5 @@ function renderizarCards(dados) {
          cardContainer.appendChild(article);
     }
 }
+
+
